@@ -1,108 +1,192 @@
 :root {
-    --primary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --light-bg: #ecf0f1;
-    --dark-text: #2c3e50;
+    --primary-color: #1a237e; /* Deep blue */
+    --secondary-color: #7b1fa2; /* Purple */
+    --accent-color: #ff4081; /* Pink */
+    --gradient-start: #4a148c; /* Dark purple */
+    --gradient-end: #311b92; /* Dark blue */
+    --light-bg: #f5f5f5;
+    --dark-text: #263238;
     --light-text: #ffffff;
+    --card-bg: #ffffff;
+    --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--light-bg);
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background-attachment: fixed;
     color: var(--dark-text);
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    min-height: 100vh;
     line-height: 1.6;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
 h1 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 2.5rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: 700;
 }
 
 #recommendation-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 0 auto 30px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: var(--box-shadow);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 label {
     display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: var(--primary-color);
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
 }
 
 select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background-color: white;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 12px auto;
+}
+
+select:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(123, 31, 162, 0.2);
 }
 
 button {
-    background-color: var(--accent-color);
+    background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
     color: var(--light-text);
     border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
+    padding: 15px 30px;
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
 }
 
 button:hover {
-    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(255, 64, 129, 0.4);
+}
+
+button:active {
+    transform: translateY(1px);
 }
 
 #recommendations {
+    margin-top: 50px;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-color) transparent;
+}
+
+.recommendations-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 20px;
-    margin-top: 30px;
+    padding: 10px 0;
+    min-width: min-content;
+}
+
+#recommendations::-webkit-scrollbar {
+    height: 8px;
+}
+
+#recommendations::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#recommendations::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 10px;
 }
 
 #recommendations div {
-    background-color: white;
-    border-radius: 8px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
     padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     width: 180px;
-    transition: transform 0.3s;
+    transition: all 0.4s;
+    flex-shrink: 0;
 }
 
 #recommendations div:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .movie-poster {
     width: 150px;
     height: 225px;
     object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #recommendations p {
     margin: 10px 0 0;
-    font-weight: bold;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--dark-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
-@media (max-width: 768px) {
+/* Fix for media query */
+@media screen and (max-width: 768px) {
     h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
     #recommendation-form {
-        padding: 15px;
+        padding: 20px;
+    }
+    
+    select {
+        padding: 12px;
+    }
+    
+    button {
+        padding: 12px 25px;
     }
     
     #recommendations div {
