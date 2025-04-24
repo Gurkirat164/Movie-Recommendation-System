@@ -116,26 +116,13 @@ button:active {
 
 .recommendations-wrapper {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 20px;
     padding: 10px 0;
     min-width: min-content;
+    justify-content: flex-start;
 }
-
-#recommendations::-webkit-scrollbar {
-    height: 8px;
-}
-
-#recommendations::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-}
-
-#recommendations::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-    border-radius: 10px;
-}
-
-/* Updating the movie card and poster styles for better consistency */
 
 #recommendations div {
     background-color: var(--card-bg);
@@ -173,12 +160,12 @@ button:active {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     width: 100%;
     text-align: center;
 }
 
-/* Update media query to maintain consistent sizing */
 @media screen and (max-width: 768px) {
     h1 {
         font-size: 2.2rem;
