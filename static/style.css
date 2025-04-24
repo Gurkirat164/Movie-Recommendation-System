@@ -114,24 +114,27 @@ button:active {
     scrollbar-color: var(--secondary-color) transparent;
 }
 
-.recommendations-wrapper {
+/* More specific selector to ensure it overrides any other styles */
+#recommendations .recommendations-wrapper {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-direction: row !important; /* Force horizontal layout */
+    flex-wrap: nowrap !important; /* Prevent wrapping */
     gap: 20px;
     padding: 10px 0;
     min-width: min-content;
     justify-content: flex-start;
+    width: 100%;
 }
 
-#recommendations div {
+/* Make the direct children of recommendations-wrapper display horizontally */
+#recommendations .recommendations-wrapper > div {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 12px;
     box-shadow: var(--box-shadow);
     width: 170px;
     transition: all 0.3s ease;
-    flex-shrink: 0;
+    flex: 0 0 auto; /* Prevent flex items from growing or shrinking */
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -34,12 +34,15 @@
             });
             const data = await response.json();
             const recommendationsDiv = document.getElementById('recommendations');
+            
+            // Clear previous recommendations and create a new wrapper
             recommendationsDiv.innerHTML = '<div class="recommendations-wrapper"></div>';
             const wrapper = recommendationsDiv.querySelector('.recommendations-wrapper');
             
             data.names.forEach((name, index) => {
                 const poster = data.posters[index];
                 const movieDiv = document.createElement('div');
+                movieDiv.className = 'movie-item'; // Add a class for easier targeting
                 movieDiv.innerHTML = `
                     <img src="${poster}" alt="${name}" class="movie-poster">
                     <p>${name}</p>
