@@ -117,28 +117,17 @@ button:active {
 /* More specific selector to ensure it overrides any other styles */
 #recommendations .recommendations-wrapper {
     display: flex;
+    flex-direction: row !important; /* Force horizontal layout */
+    flex-wrap: nowrap !important; /* Prevent wrapping */
     gap: 20px;
     padding: 10px 0;
     min-width: min-content;
+    justify-content: flex-start;
+    width: 100%;
 }
 
-#recommendations::-webkit-scrollbar {
-    height: 8px;
-}
-
-#recommendations::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-}
-
-#recommendations::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-    border-radius: 10px;
-}
-
-/* Updating the movie card and poster styles for better consistency */
-
-#recommendations div {
+/* Make the direct children of recommendations-wrapper display horizontally */
+#recommendations .recommendations-wrapper > div {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 12px;
@@ -174,12 +163,12 @@ button:active {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     width: 100%;
     text-align: center;
 }
 
-/* Update media query to maintain consistent sizing */
 @media screen and (max-width: 768px) {
     h1 {
         font-size: 2.2rem;
