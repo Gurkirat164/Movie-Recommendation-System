@@ -16,6 +16,10 @@
             height: auto;
             margin: 10px;
         }
+        .recommendations-wrapper {
+            display: flex;
+            overflow-x: auto;
+        }
     </style>
 </head>
 <body>
@@ -43,15 +47,19 @@
             });
             const data = await response.json();
             const recommendationsDiv = document.getElementById('recommendations');
-            recommendationsDiv.innerHTML = '';
+            
+            // Create a wrapper for horizontal scrolling
+            recommendationsDiv.innerHTML = '<div class="recommendations-wrapper"></div>';
+            const wrapper = recommendationsDiv.querySelector('.recommendations-wrapper');
+            
             data.names.forEach((name, index) => {
                 const poster = data.posters[index];
-                recommendationsDiv.innerHTML += `
-                    <div>
-                        <img src="${poster}" alt="${name}" class="movie-poster">
-                        <p>${name}</p>
-                    </div>
+                const movieDiv = document.createElement('div');
+                movieDiv.innerHTML = `
+                    <img src="${poster}" alt="${name}" class="movie-poster">
+                    <p>${name}</p>
                 `;
+                wrapper.appendChild(movieDiv);
             });
         });
     </script>
